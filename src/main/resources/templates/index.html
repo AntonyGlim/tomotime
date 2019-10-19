@@ -4,26 +4,87 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-        <title>xr-defecto</title>
+        <title>TOMOTIME</title>
 
         <link rel="icon" type="image/png" th:href="@{/favicon.ico}"/>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+        <style>
+            .item {
+                position: relative;
+                float: left;
+            }
+
+            .item h2 {
+                text-align:center;
+                position: absolute;
+                line-height: 125px;
+                width: 100%;
+            }
+
+            svg {
+                -webkit-transform: rotate(-90deg);
+                transform: rotate(-90deg);
+            }
+
+            .circle_animation {
+                stroke-dasharray: 440; /* this value is the pixel circumference of the circle */
+                stroke-dashoffset: 440;
+                transition: all 1s linear;
+            }
+        </style>
     </head>
     <body>
+    <script>
+        var time = 10; /* how long the timer runs for */
+        var initialOffset = '440';
+        var i = 1
+        var interval = setInterval(function() {
+            $('.circle_animation').css('stroke-dashoffset', initialOffset-(i*(initialOffset/time)));
+            $('h2').text(i);
+            if (i == time) {
+                clearInterval(interval);
+            }
+            i++;
+        }, 1000);
+    </script>
         <div class="container" id="myContainer">
 
             <div th:replace="~{topmenu :: navigation('')}"/>
 
-            <div class="card text-center">
-                <div class="card-body">
-                    <h1 class="card-title">XR-DEFECTO</h1>
-                    <p class="card-text">Ресурс разработан для автоматизации ведения измерений трубопроводов при помощи рентгеновских аппаратов.
-                        Зарегистрированные и подтвержденные пользователи могут вносить данные об измерениях в общую базу.</p>
-                </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <div class="item html">
+                <h2>0</h2>
+                <svg width="320" height="320" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <title>Layer 1</title>
+                        <circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" stroke-width="8" stroke="#6fdb6f" fill="none"/>
+                    </g>
+                </svg>
             </div>
+            <div class="item html">
+                <h2>0</h2>
+                <svg width="320" height="320" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <title>Layer 1</title>
+                        <circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" stroke-width="8" stroke="#6fdb6f" fill="none"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="item html">
+                <h2>0</h2>
+                <svg width="320" height="320" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <title>Layer 1</title>
+                        <circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" stroke-width="8" stroke="#6fdb6f" fill="none"/>
+                    </g>
+                </svg>
+            </div>
+
+            <br>
 
             <div th:replace="~{footer::footer}"/>
 
