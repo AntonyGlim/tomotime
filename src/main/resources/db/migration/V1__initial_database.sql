@@ -5,6 +5,11 @@
 -- sudo -i -u postgres
 -- psql
 
+
+-- \db - список табличных пространств
+-- \dn - список схем
+-- \dt - список таблиц
+
 -- DROP SCHEMA IF EXISTS tomotime CASCADE;
 -- CREATE SCHEMA tomotime;
 --
