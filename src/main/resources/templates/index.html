@@ -1,32 +1,68 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-        <title>TomoTime</title>
+	<title>TomoTime</title>
 
-        <link rel="icon" type="image/png" th:href="@{/favicon.ico}"/>
+	<link rel="icon" type="image/png" th:href="@{/favicon.ico}"/>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <div class="container" id="myContainer">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-            <div th:replace="~{topmenu :: navigation('')}"/>
+	<style>
+		#myProgress {
+			width: 100%;
+			background-color: #ddd;
+		}
+		#myBar {
+			width: 100%;
+			height: 30px;
+			background-color: #4CAF50;
+		}
+	</style>
 
-            <div class="card text-center">
-                <div class="card-body">
-                    <h1 class="card-title">ТОМОТIME</h1>
-                    <p class="card-text">Ресурс разработан для автоматизации ведения измерений трубопроводов при помощи рентгеновских аппаратов.
-                        Зарегистрированные и подтвержденные пользователи могут вносить данные об измерениях в общую базу.</p>
-                </div>
-            </div>
+</head>
+<body>
 
-            <div th:replace="~{footer::footer}"/>
 
-        </div>
-    </body>
+<div class="container" id="myContainer">
+
+	<div th:replace="~{topmenu :: navigation('')}"/>
+
+
+
+	<!--https://html5css.ru/howto/howto_js_progressbar.php-->
+	<div id="myProgress">
+		<div id="myBar"></div>
+	</div>
+
+	<br>
+	<button onclick="move()">5 minute</button>
+
+	<script>
+        function move() {
+            var elem = document.getElementById("myBar");
+            var width = 100;
+            var id = setInterval(frame, 3000);
+
+            function frame() {
+                if (width <= 00) {
+                    clearInterval(id);
+                } else {
+                    width--;
+                    elem.style.width = width + '%';
+                }
+            }
+        }
+	</script>
+
+
+
+	<div th:replace="~{footer::footer}"/>
+
+</div>
+</body>
 </html>
