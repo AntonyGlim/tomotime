@@ -19,4 +19,9 @@ public class MainController {
     public String register(){
         return "register";
     }
+
+    @GetMapping("/about")
+    public String about(){
+        return "about";
+    }
 }
