@@ -21,6 +21,9 @@
 			width: 100%;
 			height: 30px;
 			background-color: #4CAF50;
+			text-align: center; /* To center it horizontally (if you want) */
+			line-height: 30px; /* To center it vertically */
+			color: white;
 		}
 	</style>
 
@@ -35,27 +38,36 @@
 
 
 	<!--https://html5css.ru/howto/howto_js_progressbar.php-->
+	<br>
 	<div id="myProgress">
 		<div id="myBar"></div>
 	</div>
 
 	<br>
-	<button onclick="move()">5 minute</button>
+	<br>
+	<button onclick="backwardTimer(0.05)">0.05 minute test</button>
+	<button onclick="backwardTimer(5)">5 minute</button>
+	<button onclick="backwardTimer(15)">15 minute</button>
+	<button onclick="backwardTimer(25)">25 minute</button>
 
 	<script>
-        function move() {
+        function backwardTimer(minutes) {
             var elem = document.getElementById("myBar");
             var width = 100;
-            var id = setInterval(frame, 3000);
-
+            var id = setInterval(frame, 60 * minutes * 10);
             function frame() {
-                if (width <= 00) {
+                if (width <= 0) {
                     clearInterval(id);
+                    setInitialView(elem);
                 } else {
                     width--;
                     elem.style.width = width + '%';
+                    elem.innerHTML = minutes;
                 }
             }
+        }
+        function setInitialView(elem) {
+	        elem.style.width = 100 + '%';
         }
 	</script>
 
