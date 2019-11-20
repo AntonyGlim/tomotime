@@ -17,13 +17,17 @@
 			width: 100%;
 			background-color: #ddd;
 		}
+		#myTime {
+			position: relative;
+			height: 0px;
+			left: 50%;
+			top: 2px;
+			color: white;
+		}
 		#myBar {
 			width: 100%;
 			height: 30px;
 			background-color: #4CAF50;
-			text-align: center; /* To center it horizontally (if you want) */
-			line-height: 30px; /* To center it vertically */
-			color: white;
 		}
 	</style>
 
@@ -36,10 +40,10 @@
 	<div th:replace="~{topmenu :: navigation('')}"/>
 
 
-
 	<!--https://html5css.ru/howto/howto_js_progressbar.php-->
 	<br>
 	<div id="myProgress">
+		<div id="myTime"></div>
 		<div id="myBar"></div>
 	</div>
 
@@ -53,24 +57,24 @@
 	<script>
         function backwardTimer(minutes) {
             var elem = document.getElementById("myBar");
+            var elemTime = document.getElementById("myTime");
             var width = 100;
             var id = setInterval(frame, 60 * minutes * 10);
             function frame() {
                 if (width <= 0) {
                     clearInterval(id);
-                    setInitialView(elem);
+                    setInitialStartView(elem);
                 } else {
                     width--;
                     elem.style.width = width + '%';
-                    elem.innerHTML = minutes;
+                    elemTime.innerHTML = width;
                 }
             }
         }
-        function setInitialView(elem) {
+        function setInitialStartView(elem) {
 	        elem.style.width = 100 + '%';
         }
 	</script>
-
 
 
 	<div th:replace="~{footer::footer}"/>
