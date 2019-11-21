@@ -2,8 +2,10 @@ package glim.antony.tomotime.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,8 +20,8 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "password")
     private String password;
@@ -30,11 +32,12 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "registration_date")
+    @CreationTimestamp
+    private LocalDateTime registrationDate;
 
-    @OneToMany(mappedBy = "user")
-    private List<Task> orders;
+//    @OneToMany(mappedBy = "user")
+//    private List<Task> tasks;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles",
@@ -42,11 +45,4 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
-    public User(String phone, String password, String firstName, String lastName, String email) {
-        this.phone = phone;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
 }
