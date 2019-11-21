@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+        <title>TomoTime</title>
+
+        <link rel="icon" type="image/png" th:href="@{/favicon.ico}"/>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container" id="myContainer">
+
+            <div th:replace="~{topmenu :: navigation('')}"/>
+
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Название задачи</th>
+                    <th>Дата начала</th>
+                    <th th:text="#{utils.edit}"></th>
+                    <th th:text="#{utils.delete}"></th>
+                    <th>Временные интервалы</th>
+                    <th>Затраченное время</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="task : ${tasksList}">
+                    <td th:text="${task.id}"/>
+                    <td th:text="${task.title}"/>
+                    <td th:text="${task.timeStartTask}"/>
+                    <td> <a type="button" class="btn btn-success" th:href="@{'/cart/edit/' + ${task.id}}" th:text="#{utils.edit}"></a> </td>
+                    <td> <a type="button" class="btn btn-success" th:href="@{'/cart/delete/' + ${task.id}}" th:text="#{utils.delete}"></a> </td>
+                    <td></td>
+                    <td th:text="${task.totalTime}"/>
+                </tr>
+                </tbody>
+            </table>
+
+            <div th:replace="~{footer::footer}"/>
+
+        </div>
+    </body>
+</html>
