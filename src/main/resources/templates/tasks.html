@@ -15,7 +15,7 @@
     <body>
         <div class="container" id="myContainer">
 
-            <div th:replace="~{topmenu :: navigation('')}"/>
+            <div th:replace="~{topmenu :: navigation('tasks')}"/>
 
             <form class="md-form mt-0" th:action="@{/tasks}" method="GET">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" th:value="${word != null} ? ${word}" th:name="word">
@@ -30,6 +30,7 @@
                     <th>Дата начала</th>
                     <th th:text="#{utils.edit}"></th>
                     <th th:text="#{utils.delete}"></th>
+                    <th th:text="#{utils.details}"></th>
                     <th>Временные интервалы</th>
                     <th>Затраченное время</th>
                 </tr>
@@ -41,6 +42,7 @@
                     <td th:text="${task.timeStartTask}"/>
                     <td> <a type="button" class="btn btn-success" th:href="@{'/tasks/edit/' + ${task.id}}" th:text="#{utils.edit}"></a> </td>
                     <td> <a type="button" class="btn btn-success" th:href="@{'/tasks/delete/' + ${task.id}}" th:text="#{utils.delete}"></a> </td>
+                    <td> <a type="button" class="btn btn-info" th:href="@{'/tasks/' + ${task.id}}" th:text="#{utils.details}"></a> </td>
                     <td></td>
                     <td th:text="${task.totalTime}"/>
                 </tr>
