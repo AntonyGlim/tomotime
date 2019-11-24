@@ -1,11 +1,18 @@
 package glim.antony.tomotime.controllers;
 
+import glim.antony.tomotime.entities.Task;
 import glim.antony.tomotime.services.TaskService;
+import glim.antony.tomotime.utils.TaskFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/tasks")
@@ -18,8 +25,16 @@ public class TaskController {
     }
 
     @GetMapping("")
-    public String showTasksList(Model model){
-        model.addAttribute("tasksList", taskService.findAll());
+    public String showTasksList(
+            Model model,
+            HttpServletRequest request
+    ){
+        TaskFilter taskFilter = new TaskFilter(request);
+        Page<Task> page = taskService.findAllByPagingAndFiltering(
+                taskFilter.getSpecification(),
+                PageRequest.of(0, 15, Sort.Direction.ASC, "id")
+        );
+        model.addAttribute("page", page);
         return "tasks";
     }
 }

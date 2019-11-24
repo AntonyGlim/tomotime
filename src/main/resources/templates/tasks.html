@@ -17,6 +17,11 @@
 
             <div th:replace="~{topmenu :: navigation('')}"/>
 
+            <form class="md-form mt-0" th:action="@{/tasks}" method="GET">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" th:value="${word != null} ? ${word}" th:name="word">
+                <button type="submit" class="btn btn-primary">Фильтровать</button>
+            </form>
+
             <table class="table table-hover">
                 <thead class="thead-dark">
                 <tr>
@@ -30,7 +35,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="task : ${tasksList}">
+                <tr th:each="task : ${page.getContent()}">
                     <td th:text="${task.id}"/>
                     <td th:text="${task.title}"/>
                     <td th:text="${task.timeStartTask}"/>
