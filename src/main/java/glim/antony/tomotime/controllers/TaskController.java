@@ -9,10 +9,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/tasks")
@@ -27,13 +31,23 @@ public class TaskController {
     @GetMapping("")
     public String showTasksList(
             Model model,
-            HttpServletRequest request
+            HttpServletRequest request,
+            HttpServletResponse response,
+            @RequestParam(name = "pageSize", required = false) Integer pageSize,
+            @CookieValue(name = "pageSizeInCookie", required = false) Integer pageSizeInCookie,
+            @RequestParam(name = "pageNumber", required = false) Integer pageNumber
     ){
+        if (pageSizeInCookie == null) pageSizeInCookie = pageSize == null ? 5 : pageSize;
+        if (pageSize != null) pageSizeInCookie = pageSize;
+        response.addCookie(new Cookie("pageSizeInCookie", String.valueOf(pageSizeInCookie)));
+
+        if (pageNumber == null || pageNumber < 1) pageNumber = 1;
         TaskFilter taskFilter = new TaskFilter(request);
         Page<Task> page = taskService.findAllByPagingAndFiltering(
                 taskFilter.getSpecification(),
-                PageRequest.of(0, 15, Sort.Direction.ASC, "id")
+                PageRequest.of(pageNumber - 1, pageSizeInCookie, Sort.Direction.ASC, "id")
         );
+        model.addAttribute("pageNumber", pageNumber);
         model.addAttribute("page", page);
         return "tasks";
     }

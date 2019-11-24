@@ -47,6 +47,27 @@
                 </tbody>
             </table>
 
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+
+                    <li class="page-item">
+                        <a class="page-link"
+                           th:href="@{'/tasks?' + 'pageNumber=' + ${pageNumber == 1 ? 1 : pageNumber - 1}}">&laquo;</a>
+                    </li>
+                    <li class="page-item" th:classappend="${page.getNumber() + 1 == pageNumber ? 'active' : ''}"
+                        th:each="pageNumber: ${#numbers.sequence(1, page.getTotalPages(), 1)}">
+                        <a class="page-link" th:text="${pageNumber}"
+                           th:href="@{'/tasks?' + 'pageNumber=' + ${pageNumber}}"></a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link"
+                           th:href="@{'/tasks?' + 'pageNumber=' + ${pageNumber == page.getTotalPages() ? page.getTotalPages() : pageNumber + 1}}">&raquo;</a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
             <div th:replace="~{footer::footer}"/>
 
         </div>
