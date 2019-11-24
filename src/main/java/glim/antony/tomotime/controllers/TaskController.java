@@ -9,10 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -50,5 +47,15 @@ public class TaskController {
         model.addAttribute("pageNumber", pageNumber);
         model.addAttribute("page", page);
         return "tasks";
+    }
+
+    @GetMapping("/{id}")
+    public String showTask(
+            Model model,
+            @PathVariable(name = "id") Long id
+    ){
+        Task task = taskService.findById(id);
+        model.addAttribute("task", task);
+        return "task";
     }
 }

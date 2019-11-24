@@ -26,4 +26,8 @@ public class TaskService {
     public Page<Task> findAllByPagingAndFiltering(Specification<Task> specification, Pageable pageable) {
         return taskRepository.findAll(specification, pageable);
     }
+
+    public Task findById(Long id) {
+        return taskRepository.findById(id).get();
+    }
 }

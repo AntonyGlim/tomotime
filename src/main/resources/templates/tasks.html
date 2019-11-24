@@ -39,8 +39,8 @@
                     <td th:text="${task.id}"/>
                     <td th:text="${task.title}"/>
                     <td th:text="${task.timeStartTask}"/>
-                    <td> <a type="button" class="btn btn-success" th:href="@{'/cart/edit/' + ${task.id}}" th:text="#{utils.edit}"></a> </td>
-                    <td> <a type="button" class="btn btn-success" th:href="@{'/cart/delete/' + ${task.id}}" th:text="#{utils.delete}"></a> </td>
+                    <td> <a type="button" class="btn btn-success" th:href="@{'/tasks/edit/' + ${task.id}}" th:text="#{utils.edit}"></a> </td>
+                    <td> <a type="button" class="btn btn-success" th:href="@{'/tasks/delete/' + ${task.id}}" th:text="#{utils.delete}"></a> </td>
                     <td></td>
                     <td th:text="${task.totalTime}"/>
                 </tr>
@@ -78,8 +78,6 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Выбрать</button>
             </form>
-
-
 
             <div th:replace="~{footer::footer}"/>
 
