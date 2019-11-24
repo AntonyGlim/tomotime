@@ -24,4 +24,9 @@ public class MainController {
     public String about(){
         return "about";
     }
+
+    @GetMapping("/profile")
+    public String profile(){
+        return "profile";
+    }
 }
