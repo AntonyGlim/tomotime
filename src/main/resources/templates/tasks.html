@@ -49,7 +49,6 @@
 
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
-
                     <li class="page-item">
                         <a class="page-link"
                            th:href="@{'/tasks?' + 'pageNumber=' + ${pageNumber == 1 ? 1 : pageNumber - 1}}">&laquo;</a>
@@ -63,10 +62,24 @@
                         <a class="page-link"
                            th:href="@{'/tasks?' + 'pageNumber=' + ${pageNumber == page.getTotalPages() ? page.getTotalPages() : pageNumber + 1}}">&raquo;</a>
                     </li>
-
                 </ul>
-
             </nav>
+
+            <form class="md-form mt-0" th:action="@{/tasks}" method="GET" id="pageSizeForm">
+                <div class="form-group">
+                    <select class="form-control" id="exampleFormControlSelect1" th:name="pageSize">
+                        <option selected th:value="null">Choose task number...</option>
+                        <option>2</option>
+                        <option>5</option>
+                        <option>12</option>
+                        <option>24</option>
+                        <option>48</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Выбрать</button>
+            </form>
+
+
 
             <div th:replace="~{footer::footer}"/>
 
