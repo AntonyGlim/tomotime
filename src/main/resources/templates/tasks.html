@@ -17,11 +17,6 @@
 
             <div th:replace="~{topmenu :: navigation('tasks')}"/>
 
-            <form class="md-form mt-0" th:action="@{/tasks}" method="GET">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" th:value="${word != null} ? ${word}" th:name="word">
-                <button type="submit" class="btn btn-primary">Фильтровать</button>
-            </form>
-
             <table class="table table-hover">
                 <thead class="thead-dark">
                 <tr>
@@ -36,6 +31,14 @@
                 </tr>
                 </thead>
                 <tbody>
+                <td colspan="8">
+                    <form class="md-form mt-0" th:action="@{/tasks}" method="GET">
+                        <div class="input-group mb-3">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" th:value="${word != null} ? ${word}" th:name="word">
+                            <button type="submit" class="btn btn-dark">Фильтровать</button>
+                        </div>
+                    </form>
+                </td>
                 <tr th:each="task : ${page.getContent()}">
                     <td th:text="${task.id}"/>
                     <td th:text="${task.title}"/>
@@ -67,9 +70,9 @@
                 </ul>
             </nav>
 
-            <form class="md-form mt-0" th:action="@{/tasks}" method="GET" id="pageSizeForm">
-                <div class="form-group">
-                    <select class="form-control" id="exampleFormControlSelect1" th:name="pageSize">
+            <form class="md-form mt-0" th:action="@{/tasks}" method="GET"  id="pageSizeForm">
+                <div class="input-group mb-3">
+                    <select class="form-control" th:name="pageSize">
                         <option selected th:value="null">Choose task number...</option>
                         <option>2</option>
                         <option>5</option>
@@ -77,9 +80,12 @@
                         <option>24</option>
                         <option>48</option>
                     </select>
+                    <span> </span>
+                    <button type="submit" class="btn btn-secondary">Выбрать</button>
                 </div>
-                <button type="submit" class="btn btn-primary">Выбрать</button>
             </form>
+
+            <button type="button" class="btn btn-dark btn-lg btn-block" th:text="#{utils.add}"></button>
 
             <div th:replace="~{footer::footer}"/>
 
