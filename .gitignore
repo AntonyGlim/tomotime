@@ -32,4 +32,5 @@ build/
 
 flyway.conf
 
-*.properties
+private.properties
+application.properties
