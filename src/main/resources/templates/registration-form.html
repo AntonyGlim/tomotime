@@ -52,10 +52,17 @@
         .signup-form h2:after{
             right: 0;
         }
-        .signup-form .hint-text{
-            color: #999;
+        .signup-form .hint-text .error{
             margin-bottom: 30px;
             text-align: center;
+        }
+
+        .signup-form .hint-text .error{
+            color: #999;
+        }
+
+        .error{
+            color: red;
         }
         .signup-form form{
             color: #999;
@@ -125,6 +132,7 @@
         <div class="form-group">
             <button type="submit" class="btn btn-dark btn-lg btn-block">Register Now</button>
         </div>
+        <p class="error" th:if="${registrationError != null}" th:text="${registrationError}"></p>
     </form>
     <div class="text-center">Already have an account? <a href="#">Sign in</a></div>
 </div>
