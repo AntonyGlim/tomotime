@@ -50,19 +50,7 @@
             <a href="#" class="pull-right">Forgot Password?</a>
         </div>
     </form>
-    <p class="text-center"><a href="#">Create an Account</a></p>
+    <p class="text-center"><a th:href="@{/registration}">Create an Account</a></p>
 </div>
 </body>
 </html>
-
-<!--<li class="nav-item" sec:authorize="isAnonymous()">-->
-    <!--<form class="align-middle" th:action="@{/authenticateTheUser}" method="POST">-->
-        <!--<div class="input-group-prepend">-->
-            <!--<input class="form-control" type="text" placeholder="Email" name="username"-->
-                   <!--aria-describedby="inputGroup-sizing-sm"style="margin-left: 10px;">-->
-            <!--<input class="form-control" type="password" placeholder="Password" name="password"-->
-                   <!--aria-describedby="inputGroup-sizing-sm" style="margin-left: 10px;">-->
-            <!--<button class="btn btn-outline-light" style="margin-left: 10px;" type="submit">Log In</button>-->
-        <!--</div>-->
-    <!--</form>-->
-<!--</li>-->

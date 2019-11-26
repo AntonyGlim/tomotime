@@ -15,11 +15,6 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping("/register")
-    public String register(){
-        return "register";
-    }
-
     @GetMapping("/about")
     public String about(){
         return "about";
