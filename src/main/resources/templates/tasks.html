@@ -43,7 +43,7 @@
                     <td th:text="${task.id}"/>
                     <td th:text="${task.title}"/>
                     <td th:text="${task.timeStartTask}"/>
-                    <td> <a type="button" class="btn btn-success" th:href="@{'/tasks/edit/' + ${task.id}}" th:text="#{utils.edit}"></a> </td>
+                    <td> <a type="button" class="btn btn-success" th:href="@{'/tasks/edit?id=' + ${task.id}}" th:text="#{utils.edit}"></a> </td>
                     <td> <a type="button" class="btn btn-success" th:href="@{'/tasks/delete/' + ${task.id}}" th:text="#{utils.delete}"></a> </td>
                     <td> <a type="button" class="btn btn-info" th:href="@{'/tasks/' + ${task.id}}" th:text="#{utils.details}"></a> </td>
                     <td></td>
@@ -85,7 +85,7 @@
                 </div>
             </form>
 
-            <button type="button" class="btn btn-dark btn-lg btn-block" th:text="#{utils.add}"></button>
+            <a type="button" class="btn btn-dark btn-lg btn-block" th:text="#{utils.add}" th:href="@{/tasks/edit}"></a>
 
             <div th:replace="~{footer::footer}"/>
 

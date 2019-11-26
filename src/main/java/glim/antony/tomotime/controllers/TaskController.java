@@ -33,7 +33,7 @@ public class TaskController {
             @RequestParam(name = "pageSize", required = false) Integer pageSize,
             @CookieValue(name = "pageSizeInCookie", required = false) Integer pageSizeInCookie,
             @RequestParam(name = "pageNumber", required = false) Integer pageNumber
-    ){
+    ) {
         if (pageSizeInCookie == null) pageSizeInCookie = pageSize == null ? 5 : pageSize;
         if (pageSize != null) pageSizeInCookie = pageSize;
         response.addCookie(new Cookie("pageSizeInCookie", String.valueOf(pageSizeInCookie)));
@@ -53,9 +53,28 @@ public class TaskController {
     public String showTask(
             Model model,
             @PathVariable(name = "id") Long id
-    ){
+    ) {
         Task task = taskService.findById(id);
         model.addAttribute("task", task);
         return "task";
+    }
+
+    @GetMapping("/edit")
+    public String showEditForm(
+            Model model,
+            @RequestParam(name = "id", required = false) Long id
+    ) {
+        Task task = id != null ? taskService.findById(id) : new Task();
+        model.addAttribute("task", task);
+        return "edit-task-form";
+    }
+
+    @GetMapping("/edit/process")
+    public String processAddOrEditTask(
+            @ModelAttribute("task") Task task,
+            Model model
+    ) {
+        taskService.save(task);
+        return "redirect:/tasks";
     }
 }
