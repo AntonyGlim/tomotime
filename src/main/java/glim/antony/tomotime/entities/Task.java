@@ -23,6 +23,9 @@ public class Task implements Serializable {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "time_start_task")
     @CreationTimestamp
     private LocalDateTime timeStartTask;
