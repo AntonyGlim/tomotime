@@ -69,7 +69,7 @@ public class TaskController {
         return "edit-task-form";
     }
 
-    @GetMapping("/edit/process")
+    @PostMapping("/edit/process")
     public String processAddOrEditTask(
             @ModelAttribute("task") Task task,
             Model model

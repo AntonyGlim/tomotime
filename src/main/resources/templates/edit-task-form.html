@@ -20,20 +20,36 @@
 	<form th:action="@{/tasks/edit/process}" th:object="${task}" method="post">
 		<div class="form-group">
 			<input type="text" class="form-control" th:placeholder="${task.getTitle()}" name="title">
-			<small id="title" class="form-text text-muted">We'll never share your email with anyone else.</small>
+			<small class="form-text text-muted">We'll never share your email with anyone else.</small>
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" th:placeholder="${task.getDescription()}" name="description">
+			<input type="text" class="form-control" th:placeholder="${task.getDescription()}" th:field="*{description}">
 			<small id="description" class="form-text text-muted">We'll never share your email with anyone else
 				Description.
 			</small>
 		</div>
-		<div class="form-group">
-			<input type="text" class="form-control" th:placeholder="${task.getTimeStartTask()}" name="timeStartTask">
+		<div class="form-group" th:if="${task.getTimeStartTask() != null}">
+			<input type="text" class="form-control" th:placeholder="${task.getTimeStartTask()}" th:field="*{timeStartTask}">
 			<small id="date" class="form-text text-muted">We'll never share your email with anyone else Date.</small>
 		</div>
 
-		<a type="button" class="btn btn-dark btn-lg btn-block" th:text="#{utils.add}" th:href="@{/tasks/edit/process}"></a>
+		<button type="submit" class="btn btn-dark btn-lg btn-block" th:text="#{utils.add}"></button>
+	</form>
+
+
+	<form th:action="@{/tasks/edit/process}" th:object="${task}" method="post">
+		<div class="form-group">
+			<input type="text" class="form-control" name="title" th:placeholder="${task.getTitle() == null ? 'Enter task title...' : task.getTitle()}" required="required">
+		</div>
+		<div class="form-group">
+			<input type="text" class="form-control" name="description" th:placeholder="${task.getTitle() == null ? 'Enter description...' : task.getDescription()}" required="required">
+		</div>
+		<div class="form-group" th:if="${task.getTimeStartTask() != null}">
+			<input type="date" class="form-control" name="description" th:datetime="${task.getTimeStartTask()}">
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-dark btn-lg btn-block" th:text="#{utils.add}"></button>
+		</div>
 	</form>
 
 	<div th:replace="~{footer::footer}"/>
