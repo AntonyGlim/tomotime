@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS products CASCADE;
+DROP TABLE IF EXISTS tasks CASCADE;
 CREATE TABLE tasks
 (
   id              bigserial PRIMARY KEY,
@@ -7,7 +7,7 @@ CREATE TABLE tasks
   time_start_task timestamp,
   total_time      timestamp
 );
--- \d products;
+-- \d tasks;
 INSERT INTO tasks (title, description, time_start_task, total_time)
 VALUES ('1 Task-16', 'description-16', LOCALTIMESTAMP, LOCALTIMESTAMP),
        ('2 Task-32', 'description-32', LOCALTIMESTAMP, LOCALTIMESTAMP),
@@ -20,4 +20,4 @@ VALUES ('1 Task-16', 'description-16', LOCALTIMESTAMP, LOCALTIMESTAMP),
        ('9 Task-105', 'description-105', LOCALTIMESTAMP, LOCALTIMESTAMP),
        ('10 Task-210', 'description-210', LOCALTIMESTAMP, LOCALTIMESTAMP)
 ;
--- SELECT * FROM products;
+-- SELECT * FROM tasks;
