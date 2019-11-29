@@ -24,7 +24,7 @@ public class TaskFilter {
         filtersString = new StringBuilder();
 
         if (request.getParameter("word") != null && !request.getParameter("word").isEmpty()) {
-            specification = specification.and(TaskSpecification.titleContains(request.getParameter("word")));
+            specification = specification.and(TaskSpecification.titleContainsIgnoreCase(request.getParameter("word")));
             filtersString.append("&word=" + request.getParameter("word"));
         }
     }
