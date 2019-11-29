@@ -2,7 +2,9 @@ package glim.antony.tomotime.controllers;
 
 import glim.antony.tomotime.entities.User;
 import glim.antony.tomotime.services.UserService;
+import glim.antony.tomotime.services.email.MailService;
 import glim.antony.tomotime.utils.SystemUser;
+import glim.antony.tomotime.utils.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -16,11 +18,18 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
+
     private UserService userService;
+    private MailService mailService;
 
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setMailService(MailService mailService) {
+        this.mailService = mailService;
     }
 
     @InitBinder //отпилит все пробелы
@@ -52,7 +61,8 @@ public class RegistrationController {
             model.addAttribute("registrationError", "User with current username is already exist");
             return "registration-form";
         }
-        userService.save(systemUser);
+        existingUser = userService.save(systemUser);
+        mailService.sendConfirmMail(new UserDTO(existingUser));
         return "registration-confirmation";
     }
 }
