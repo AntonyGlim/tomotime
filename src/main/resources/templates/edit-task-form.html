@@ -17,32 +17,17 @@
 
 	<div th:replace="~{topmenu :: navigation('')}"/>
 
-	<form th:action="@{/tasks/edit/process}" th:object="${task}" method="post">
-		<div class="form-group">
-			<input type="text" class="form-control" th:placeholder="${task.getTitle()}" name="title">
-			<small class="form-text text-muted">We'll never share your email with anyone else.</small>
-		</div>
-		<div class="form-group">
-			<input type="text" class="form-control" th:placeholder="${task.getDescription()}" th:field="*{description}">
-			<small id="description" class="form-text text-muted">We'll never share your email with anyone else
-				Description.
-			</small>
-		</div>
-		<div class="form-group" th:if="${task.getTimeStartTask() != null}">
-			<input type="text" class="form-control" th:placeholder="${task.getTimeStartTask()}" th:field="*{timeStartTask}">
-			<small id="date" class="form-text text-muted">We'll never share your email with anyone else Date.</small>
-		</div>
 
-		<button type="submit" class="btn btn-dark btn-lg btn-block" th:text="#{utils.add}"></button>
-	</form>
-
+	<br>
 
 	<form th:action="@{/tasks/edit/process}" th:object="${task}" method="post">
 		<div class="form-group">
-			<input type="text" class="form-control" name="title" th:placeholder="${task.getTitle() == null ? 'Enter task title...' : task.getTitle()}" required="required">
+			<input type="text" class="form-control" name="title" th:placeholder="${task.getTitle() == null ? 'Enter task title...' : task.getTitle()}" th:value="${task.getTitle() == null ? '' : task.getTitle()}">
+			<small class="form-text text-muted">You cannot enter forbidden words that contains (forbWord in any case)</small>
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" name="description" th:placeholder="${task.getTitle() == null ? 'Enter description...' : task.getDescription()}" required="required">
+			<input type="text" class="form-control" name="description" th:placeholder="${task.getDescription() == null ? 'Enter description...' : task.getDescription()}" th:value="${task.getDescription() == null ? '' : task.getDescription()}">
+			<small class="form-text text-muted">You cannot enter forbidden words that contains (forbWord in any case)</small>
 		</div>
 		<div class="form-group" th:if="${task.getTimeStartTask() != null}">
 			<input type="date" class="form-control" name="description" th:datetime="${task.getTimeStartTask()}">
