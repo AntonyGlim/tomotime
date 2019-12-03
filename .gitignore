@@ -30,4 +30,7 @@ build/
 ### VS Code ###
 .vscode/
 
-*.properties
+flyway.conf
+
+private.properties
+application.properties
