@@ -34,3 +34,4 @@ flyway.conf
 
 private.properties
 application.properties
+maven-wrapper.properties
