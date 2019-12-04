@@ -15,6 +15,8 @@ import java.util.Map;
 @NoArgsConstructor
 public class Task implements Serializable {
 
+    private static final long serialVersionUID = -7612607379234129634L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

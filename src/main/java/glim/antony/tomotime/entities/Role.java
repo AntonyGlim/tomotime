@@ -4,12 +4,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "roles")
 @Data
 @NoArgsConstructor
-public class Role {
+public class Role implements Serializable {
+
+    private static final long serialVersionUID = -7691437683737749855L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

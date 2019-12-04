@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -13,7 +14,9 @@ import java.util.List;
 @Table(name = "users")
 @Data
 @NoArgsConstructor
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 3155744897592038483L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
