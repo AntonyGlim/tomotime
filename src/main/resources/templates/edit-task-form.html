@@ -21,19 +21,33 @@
 	<br>
 
 	<form th:action="@{/tasks/edit/process}" th:object="${task}" method="post">
+		<input type="hidden" name="id" th:value="${task.getId() == null ? '' : task.getId()}" />
 		<div class="form-group">
-			<input type="text" class="form-control" name="title" th:placeholder="${task.getTitle() == null ? 'Enter task title...' : task.getTitle()}" th:value="${task.getTitle() == null ? '' : task.getTitle()}">
+			<input type="text"
+			       class="form-control"
+			       name="title"
+			       th:placeholder="${task.getTitle() == null ? 'Enter task title...' : task.getTitle()}"
+			       th:value="${task.getTitle() == null ? '' : task.getTitle()}">
 			<small class="form-text text-muted">You cannot enter forbidden words that contains (forbWord in any case)</small>
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" name="description" th:placeholder="${task.getDescription() == null ? 'Enter description...' : task.getDescription()}" th:value="${task.getDescription() == null ? '' : task.getDescription()}">
+			<input type="text"
+			       class="form-control"
+			       name="description"
+			       th:placeholder="${task.getDescription() == null ? 'Enter description...' : task.getDescription()}"
+			       th:value="${task.getDescription() == null ? '' : task.getDescription()}">
 			<small class="form-text text-muted">You cannot enter forbidden words that contains (forbWord in any case)</small>
 		</div>
 		<div class="form-group" th:if="${task.getTimeStartTask() != null}">
-			<input type="date" class="form-control" name="description" th:datetime="${task.getTimeStartTask()}">
+			<dd><input type="text"
+			       class="form-control"
+			       name="timeStartTask"
+			       th:datetime="${task.getTimeStartTask()}"
+		           th:value="${task.getTimeStartTask()}"></dd>
+			<small class="form-text text-muted">Please select date</small>
 		</div>
 		<div class="form-group">
-			<button type="submit" class="btn btn-dark btn-lg btn-block" th:text="#{utils.add}"></button>
+			<button type="submit" class="btn btn-dark btn-lg btn-block" th:text="#{utils.save}"></button>
 		</div>
 	</form>
 
