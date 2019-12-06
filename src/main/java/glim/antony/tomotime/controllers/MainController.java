@@ -20,8 +20,4 @@ public class MainController {
         return "about";
     }
 
-    @GetMapping("/profile")
-    public String profile(){
-        return "profile";
-    }
 }
