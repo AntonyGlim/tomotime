@@ -5,6 +5,7 @@ import glim.antony.tomotime.entities.User;
 import glim.antony.tomotime.repositories.RoleRepository;
 import glim.antony.tomotime.repositories.UserRepository;
 import glim.antony.tomotime.utils.SystemUser;
+import glim.antony.tomotime.utils.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -47,6 +48,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findById(Long id) {
+        return userRepository.findById(id).get();
+    }
+
+    @Override
     public boolean isUserExist(String email) {
         return userRepository.existsByEmail(email);
     }
@@ -55,7 +61,7 @@ public class UserServiceImpl implements UserService {
     public User save(SystemUser systemUser) {
         User user = new User();
         if (findByEmail(systemUser.getEmail()) != null) {
-            throw new RuntimeException("User with phone " + systemUser.getEmail() + " is already exist");
+            throw new RuntimeException("User with email " + systemUser.getEmail() + " is already exist");
         }
         user.setEmail(systemUser.getEmail());
         if (systemUser.getPassword() != null) {
@@ -64,6 +70,14 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(systemUser.getFirstName());
         user.setLastName(systemUser.getLastName());
         user.setRoles(Arrays.asList(roleRepository.findOneByName("ROLE_USER")));
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User updateFirstAndLastName(UserDTO userDTO) {
+        User user = userRepository.findOneByEmail(userDTO.getEmail());
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
         return userRepository.save(user);
     }
 

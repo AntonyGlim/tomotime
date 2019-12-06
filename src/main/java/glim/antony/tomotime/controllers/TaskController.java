@@ -70,9 +70,8 @@ public class TaskController {
     }
 
     @PostMapping("/edit/process")
-    public String processAddOrEditTask(
-            @ModelAttribute("task") Task task,
-            Model model
+    public String processAddOrEdit(
+            @ModelAttribute("task") Task task
     ) {
         taskService.save(task);
         return "redirect:/tasks";

@@ -33,7 +33,7 @@
                     <li><p th:text="${'With as since ' + user.getRegistrationDate()}"></p></li>
                 </ul>
                 <a type="button" class="btn btn-success" th:href="@{'/profile/edit?id=' + ${user.getId()}}" th:text="#{utils.edit}"></a>
-                <a type="button" class="btn btn-success" th:href="@{'/profile/change?id=' + ${user.getId()}}" th:text="'Change password'"></a>
+                <a type="button" class="btn btn-primary" th:href="@{'/profile/change?id=' + ${user.getId()}}" th:text="'Change password'"></a>
             </div>
         </div>
     </div>

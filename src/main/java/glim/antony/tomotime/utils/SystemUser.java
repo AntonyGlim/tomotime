@@ -1,6 +1,7 @@
 package glim.antony.tomotime.utils;
 
 
+import glim.antony.tomotime.entities.User;
 import glim.antony.tomotime.utils.validation.FieldMatch;
 import lombok.Data;
 import lombok.NoArgsConstructor;

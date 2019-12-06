@@ -23,4 +23,14 @@ public class UserDTO {
         this.registrationDate = user.getRegistrationDate();
     }
 
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", registrationDate=" + registrationDate +
+                '}';
+    }
 }
