@@ -12,17 +12,17 @@
                 <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item" sec:authorize="isAuthenticated()" th:classappend="${activeTab == 'tasks' ? ' active' : ''}">
-                            <a class="nav-link" th:href="@{/tasks}">Задачи<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" th:href="@{/tasks}" th:text="#{nav.tasks}"><span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item" sec:authorize="isAuthenticated()" th:classappend="${activeTab == 'archive' ? ' active' : ''}">
-                            <a class="nav-link" th:href="@{/archive}">Архив</a>
+                            <a class="nav-link" th:href="@{/archive}" th:text="#{nav.archive}"></a>
                         </li>
                         <li class="nav-item" sec:authorize="isAuthenticated()" th:classappend="${activeTab == 'profile' ? ' active' : ''}">
-                            <a class="nav-link" th:href="@{/profile}">Профиль</a>
+                            <a class="nav-link" th:href="@{/profile}" th:text="#{nav.profile}"></a>
                         </li>
                         <li sec:authorize="isAuthenticated()" class="nav-item">
                             <form th:action="@{/logout}" method="POST">
-                                <input type="submit" class="btn btn-outline-light" value="Logout"/>
+                                <input type="submit" class="btn btn-outline-light" th:value="#{nav.logout}"/>
                             </form>
                         </li>
                     </ul>
