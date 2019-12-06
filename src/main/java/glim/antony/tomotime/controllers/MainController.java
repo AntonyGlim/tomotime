@@ -20,4 +20,9 @@ public class MainController {
         return "about";
     }
 
+    @GetMapping("/archive")
+    public String archive(){
+        return "archive";
+    }
+
 }
