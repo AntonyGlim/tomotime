@@ -40,14 +40,14 @@
                     </form>
                 </td>
                 <tr th:each="task : ${page.getContent()}">
-                    <td th:text="${task.id}"/>
-                    <td th:text="${task.title}"/>
-                    <td th:text="${task.timeStartTask}"/>
-                    <td> <a type="button" class="btn btn-success" th:href="@{'/tasks/edit?id=' + ${task.id}}" th:text="#{utils.edit}"></a> </td>
-                    <td> <a type="button" class="btn btn-success" th:href="@{'/tasks/delete/' + ${task.id}}" th:text="#{utils.delete}"></a> </td>
-                    <td> <a type="button" class="btn btn-info" th:href="@{'/tasks/' + ${task.id}}" th:text="#{utils.details}"></a> </td>
+                    <td th:text="${task.getId()}"/>
+                    <td th:text="${task.getTitle()}"/>
+                    <td th:text="${#temporals.format(task.getTimeStartTask(), 'dd.MM.yyyy HH:mm')}"/>
+                    <td> <a type="button" class="btn btn-success" th:href="@{'/tasks/edit?id=' + ${task.getId()}}" th:text="#{utils.edit}"></a> </td>
+                    <td> <a type="button" class="btn btn-success" th:href="@{'/tasks/delete/' + ${task.getId()}}" th:text="#{utils.delete}"></a> </td>
+                    <td> <a type="button" class="btn btn-info" th:href="@{'/tasks/' + ${task.getId()}}" th:text="#{utils.details}"></a> </td>
                     <td></td>
-                    <td th:text="${task.totalTime}"/>
+                    <td th:text="${task.getTotalTime()}"/>
                 </tr>
                 </tbody>
             </table>
