@@ -55,7 +55,9 @@ VALUES ('ROLE_USER'),
        ('ROLE_ADMIN');
 
 INSERT INTO users (email, password, first_name, last_name, registration_date)
-VALUES ('admin@mail.com', '$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpwIPbA3v/.i', 'AdminName', 'AdminLastName', LOCALTIMESTAMP);
+VALUES  ('admin1@mail.com', '$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpwIPbA3v/.i', 'Admin1Name', 'Admin1LastName', LOCALTIMESTAMP),
+        ('admin2@mail.com', '$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpwIPbA3v/.i', 'Admin3Name', 'Admin2LastName', LOCALTIMESTAMP),
+        ('admin3@mail.com', '$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpwIPbA3v/.i', 'Admin4Name', 'Admin3LastName', LOCALTIMESTAMP);
 -- password 100
 
 INSERT INTO users_roles (user_id, role_id)

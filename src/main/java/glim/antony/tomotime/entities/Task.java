@@ -32,6 +32,10 @@ public class Task implements Serializable {
     @CreationTimestamp
     private LocalDateTime timeStartTask;
 
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
+    private User user;
+
 //    private Map<LocalDateTime, LocalDateTime> timeMap;
 
     @Column(name = "total_time")

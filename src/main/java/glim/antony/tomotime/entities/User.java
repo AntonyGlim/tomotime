@@ -39,8 +39,8 @@ public class User implements Serializable {
     @CreationTimestamp
     private LocalDateTime registrationDate;
 
-//    @OneToMany(mappedBy = "user")
-//    private List<Task> tasks;
+    @OneToMany(mappedBy = "user")
+    private List<Task> tasks;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles",

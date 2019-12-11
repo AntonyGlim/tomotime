@@ -1,6 +1,7 @@
 package glim.antony.tomotime.services;
 
 import glim.antony.tomotime.entities.Task;
+import glim.antony.tomotime.entities.User;
 import glim.antony.tomotime.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,6 +24,10 @@ public class TaskService {
         return (List<Task>) taskRepository.findAll();
     }
 
+    public List<Task> findAllByUser(User user) {
+        return (List<Task>) taskRepository.findAllByUser(user);
+    }
+
     public Page<Task> findAllByPagingAndFiltering(Specification<Task> specification, Pageable pageable) {
         return taskRepository.findAll(specification, pageable);
     }
@@ -34,4 +39,5 @@ public class TaskService {
     public Task save(Task task){
         return taskRepository.save(task);
     }
+
 }

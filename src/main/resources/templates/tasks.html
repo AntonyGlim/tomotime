@@ -87,6 +87,35 @@
 
             <a type="button" class="btn btn-dark btn-lg btn-block" th:text="#{utils.add}" th:href="@{/tasks/edit}"></a>
 
+
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Название задачи</th>
+                    <th>Дата начала</th>
+                    <th th:text="#{utils.edit}"></th>
+                    <th th:text="#{utils.delete}"></th>
+                    <th th:text="#{utils.details}"></th>
+                    <th>Временные интервалы</th>
+                    <th>Затраченное время</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="pTask : ${personalTasks}">
+                    <td th:text="${pTask.getId()}"/>
+                    <td th:text="${pTask.getTitle()}"/>
+                    <td th:text="${#temporals.format(pTask.getTimeStartTask(), 'dd.MM.yyyy HH:mm')}"/>
+                    <td> <a type="button" class="btn btn-success" th:href="@{'/tasks/edit?id=' + ${pTask.getId()}}" th:text="#{utils.edit}"></a> </td>
+                    <td> <a type="button" class="btn btn-success" th:href="@{'/tasks/delete/' + ${pTask.getId()}}" th:text="#{utils.delete}"></a> </td>
+                    <td> <a type="button" class="btn btn-info" th:href="@{'/tasks/' + ${pTask.getId()}}" th:text="#{utils.details}"></a> </td>
+                    <td></td>
+                    <td th:text="${pTask.getTotalTime()}"/>
+                </tr>
+                </tbody>
+            </table>
+
+
             <div th:replace="~{footer::footer}"/>
 
         </div>
