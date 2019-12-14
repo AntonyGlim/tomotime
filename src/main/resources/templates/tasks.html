@@ -119,34 +119,7 @@
 
             <br>
 
-            <table class="table table-hover">
-                <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Название задачи</th>
-                    <th>Дата начала</th>
-                    <th th:text="#{utils.edit}"></th>
-                    <th th:text="#{utils.delete}"></th>
-                    <th th:text="#{utils.details}"></th>
-                    <th th:text="#{task.status}"></th>
-                    <th>Временные интервалы</th>
-                    <th>Затраченное время</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="ptTask : ${personalTaskWithStatus}">
-                    <td th:text="${ptTask.getId()}"/>
-                    <td th:text="${ptTask.getTitle()}"/>
-                    <td th:text="${#temporals.format(ptTask.getTimeStartTask(), 'dd.MM.yyyy HH:mm')}"/>
-                    <td> <a type="button" class="btn btn-success" th:href="@{'/tasks/edit?id=' + ${ptTask.getId()}}" th:text="#{utils.edit}"></a> </td>
-                    <td> <a type="button" class="btn btn-success" th:href="@{'/tasks/delete/' + ${ptTask.getId()}}" th:text="#{utils.delete}"></a> </td>
-                    <td> <a type="button" class="btn btn-info" th:href="@{'/tasks/' + ${ptTask.getId()}}" th:text="#{utils.details}"></a> </td>
-                    <td th:text="${ptTask.getStatus()}"/>
-                    <td></td>
-                    <td th:text="${ptTask.getTotalTime()}"/>
-                </tr>
-                </tbody>
-            </table>
+
 
 
             <div th:replace="~{footer::footer}"/>
