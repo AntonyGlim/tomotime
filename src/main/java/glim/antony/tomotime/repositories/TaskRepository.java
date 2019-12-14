@@ -15,4 +15,6 @@ public interface TaskRepository extends
 
     List<Task> findAllByUser(User user);
 
+    List<Task> findAllByUserAndStatus(User user, Task.Status status);
+
 }

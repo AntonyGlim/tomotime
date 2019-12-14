@@ -17,6 +17,7 @@ public class Task implements Serializable {
 
     private static final long serialVersionUID = -7612607379234129634L;
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -27,6 +28,10 @@ public class Task implements Serializable {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Column(name = "time_start_task")
     @CreationTimestamp
@@ -41,4 +46,13 @@ public class Task implements Serializable {
     @Column(name = "total_time")
     @CreationTimestamp
     private LocalDateTime totalTime;
+
+    public enum Status {
+        NEW,
+        IN_PROCESS,
+        PAUSE,
+        DONE,
+        REJECTED
+    }
+
 }

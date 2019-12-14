@@ -40,4 +40,7 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
+    public List<Task> findAllByUserAndStatus(User user, Task.Status status) {
+        return taskRepository.findAllByUserAndStatus(user, status);
+    }
 }

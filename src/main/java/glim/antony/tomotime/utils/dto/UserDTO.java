@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,7 +27,10 @@ public class UserDTO {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.registrationDate = user.getRegistrationDate();
-        Collections.copy(tasks, user.getTasks());
+        this.tasks = new ArrayList<>();
+//        Collections.copy(this.tasks, user.getTasks());
+        for (Task task : user.getTasks()) this.tasks.add(task);
+
     }
 
     @Override

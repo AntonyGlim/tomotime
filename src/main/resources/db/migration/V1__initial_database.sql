@@ -62,4 +62,6 @@ VALUES  ('admin1@mail.com', '$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpw
 
 INSERT INTO users_roles (user_id, role_id)
 VALUES (1, 1),
-       (1, 2);
+       (1, 2),
+       (2, 1),
+       (3, 1);

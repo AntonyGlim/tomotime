@@ -60,11 +60,16 @@ public class TaskController {
         User user = userService.findByEmail(principal.getName());
         List<Task> personalTasks = taskService.findAllByUser(user);
 
+        List<Task> personalTaskWithStatus = taskService.findAllByUserAndStatus(user, Task.Status.DONE);
+
         model.addAttribute("pageNumber", pageNumber);
         model.addAttribute("page", page);
         model.addAttribute("personalTasks", personalTasks);
+        model.addAttribute("personalTaskWithStatus", personalTaskWithStatus);
         return "tasks";
     }
+
+
 
     @GetMapping("/{id}")
     public String showTask(
